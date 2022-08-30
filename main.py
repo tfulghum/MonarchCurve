@@ -1,16 +1,16 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from collate_log import read_data, combine_folder, combine_logs, pd_to_excel
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# by Tyler Fulghum, monarch curve testing section.
+# Reads text file into pandas dataframe
+
+def main():
+    df = combine_folder("7_28_1300_1500")
+    df = combine_logs("7_28_1300_1500")
+    print(df)
+    #fname = "test1"
+    #pd_to_excel(df, fname)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
