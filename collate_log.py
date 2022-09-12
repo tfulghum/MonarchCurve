@@ -41,6 +41,7 @@ def combine_logs(folder_name):
     path = os.path.dirname(os.path.abspath(__file__))
     path = os.path.join(path, "mdata", folder_name, "Logs")
 
+
     # Files must contain "Log" in name
     with os.scandir(path) as logs:
         for entry in logs:
