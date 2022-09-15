@@ -23,6 +23,8 @@ def main():
     print(x)
     print(type(x))
 
+    pd_to_excel(df, "8_22")
+
     plt.title("Matplotlib demo")
     plt.xlabel("Time")
     plt.ylabel("White_u")
