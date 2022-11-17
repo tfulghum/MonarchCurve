@@ -1,5 +1,5 @@
 from collate_log import read_data, combine_folder, combine_logs, pd_to_excel
-from monarch_func import ignore_outliers, get_heatmap, remove_outliers
+from monarch_func import ignore_outliers, get_heatmap, remove_outliers, get_joint_plot, parse_dateTime
 
 from matplotlib import pyplot as plt
 from scipy import stats
@@ -21,18 +21,23 @@ def main():
     df = combine_logs("completedata")
     kdata = combine_logs("kacie")
     df = pd.concat([df, kdata])
-    df = df.iloc[:, 1:-1]                           # Removing NaN row
+    df = df.iloc[:, :-1]
+    df = parse_dateTime(df)
+    df = df.iloc[:, 1:]
 
     # Handling outliers
-    get_heatmap(df)
-    df1 = remove_outliers(df, 3)                    # df1 is data with rescaled outliers
-    df1 = df1.drop(' PyroT_u [C]', axis=1)
+    #df1 = remove_outliers(df, 3)                    # df1 is data with rescaled outliers
+    df1 = df.drop(' PyroT_u [C]', axis=1)
     get_heatmap(df1)
+
+    # Seaborn Test
+    get_joint_plot(df)
+
     # Prepping Train / Test Split
     pyro = np.array(df1[' Pyro [uV]'])              # Data we want to match to
-    feature_list = list(df1.columns)
     sensordata = df1.drop(' Pyro [uV]', axis=1)     # Dropping actual data
-    sensordata = np.array(df1)                      # Convert to NP array
+    feature_list = list(sensordata.columns)
+    sensordata = np.array(sensordata)                      # Convert to NP array
     train_features, test_features, train_labels, test_labels = train_test_split(sensordata, pyro, test_size=0.25, random_state=42)
 
     # Sklearn Random forest
@@ -52,13 +57,13 @@ def main():
 
     # Tree printing
     # Limit depth of tree to 3 levels
-    #rf_small = RandomForestRegressor(n_estimators=10, max_depth=3)
-    #rf_small.fit(train_features, train_labels)
+    rf_small = RandomForestRegressor(n_estimators=10, max_depth=3)
+    rf_small.fit(train_features, train_labels)
     # Extract the small tree
-    #tree_small = rf_small.estimators_[5]
+    tree_small = rf_small.estimators_[5]
     # Save the tree as a png image
-    #export_graphviz(tree_small, out_file='small_tree.dot', feature_names=feature_list, rounded=True, precision=1)
-    #(graph,) = pydot.graph_from_dot_file('small_tree.dot')
+    export_graphviz(tree_small, out_file='small_tree.dot', feature_names=feature_list, rounded=True, precision=1)
+    (graph,) = pydot.graph_from_dot_file('small_tree.dot')
     #graph.write_png('small_tree.png');
 
 

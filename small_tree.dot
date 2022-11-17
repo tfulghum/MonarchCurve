@@ -1,21 +1,21 @@
 digraph Tree {
 node [shape=box, style="rounded", color="black", fontname="helvetica"] ;
 edge [fontname="helvetica"] ;
-0 [label=" Pyro [uV] <= -10125.1\nsquared_error = 11865072.7\nsamples = 156\nvalue = -268.6"] ;
-1 [label="squared_error = 0.0\nsamples = 4\nvalue = -20479.8"] ;
+0 [label=" UVA_u <= -0.5\nsquared_error = 5049286.8\nsamples = 158\nvalue = 73.9"] ;
+1 [label="squared_error = 0.0\nsamples = 1\nvalue = -20479.8"] ;
 0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
-2 [label=" Pyro [uV] <= 300.1\nsquared_error = 103.1\nsamples = 152\nvalue = 318.4"] ;
+2 [label=" P_u [deg] <= -0.4\nsquared_error = 3392861.7\nsamples = 157\nvalue = 155.1"] ;
 0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
-3 [label=" IR_M_u [mV] <= 91.8\nsquared_error = 536.3\nsamples = 3\nvalue = 252.6"] ;
+3 [label=" P_u [deg] <= -0.5\nsquared_error = 44909344.8\nsamples = 11\nvalue = -2127.2"] ;
 2 -> 3 ;
-4 [label="squared_error = 0.0\nsamples = 1\nvalue = 280.3"] ;
+4 [label="squared_error = 0.0\nsamples = 9\nvalue = 319.8"] ;
 3 -> 4 ;
-5 [label="squared_error = 38.3\nsamples = 2\nvalue = 234.1"] ;
+5 [label="squared_error = 96139264.0\nsamples = 2\nvalue = -13546.6"] ;
 3 -> 5 ;
-6 [label=" IR_S_u [mV] <= 7.8\nsquared_error = 0.0\nsamples = 149\nvalue = 319.8"] ;
+6 [label=" Temp RTC [C] <= 13.6\nsquared_error = 25.0\nsamples = 146\nvalue = 319.5"] ;
 2 -> 6 ;
-7 [label="squared_error = -0.0\nsamples = 22\nvalue = 319.8"] ;
+7 [label="squared_error = 1318.6\nsamples = 2\nvalue = 294.2"] ;
 6 -> 7 ;
-8 [label="squared_error = 0.0\nsamples = 127\nvalue = 319.8"] ;
+8 [label="squared_error = 0.0\nsamples = 144\nvalue = 319.8"] ;
 6 -> 8 ;
 }
